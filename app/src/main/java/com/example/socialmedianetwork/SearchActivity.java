@@ -2,10 +2,14 @@ package com.example.socialmedianetwork;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -15,6 +19,7 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
+    private Button exitButton;
     ArrayAdapter<String> arrayAdapter;
 
     @Override
@@ -22,8 +27,24 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        exitButton = findViewById(R.id.exit_button);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMainActivity();
+            }
+        });
+
         ListView listView = findViewById(R.id.search_list);
         List<String> searchList = new ArrayList<>();
+        searchList.add("christmas");
+        searchList.add("atHome");
+        searchList.add("studying");
+        searchList.add("lockdown");
+        searchList.add("christmasLove");
+        searchList.add("christmasCookies");
+        searchList.add("karantinaNo2");
+        searchList.add("melomakarona");
         searchList.add("christmas");
         searchList.add("atHome");
         searchList.add("studying");
@@ -58,5 +79,10 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
